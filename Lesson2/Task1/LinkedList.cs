@@ -37,63 +37,100 @@ namespace Task1
 			}
 		}
 
-		public void AddNodeAfter(Node node, int value)
+		public void AddNodeAfter(Node currentNode, int value)
 		{
 			var newNode = new Node { Value = value };
-			var nextNode = node.NextItem;
-			node.NextItem = newNode;
+			var nextNode = currentNode.NextItem;
+
+			currentNode.NextItem = newNode;
 			newNode.NextItem = nextNode;
-			nextNode.PrevItem = node;
-			if (nextNode.NextItem == null) LastNode = nextNode;
+			nextNode.PrevItem = currentNode;
+
+			if (nextNode.NextItem == null)
+			{
+				LastNode = nextNode; 
+			}
 		}
 
 		public Node FindNode(int searchValue)
 		{
-
-			var node = FirstNode;
-			while (node != LastNode)
+			var currentNode = FirstNode;
+			while (currentNode != LastNode)
 			{
-				if (node.Value == searchValue)
+				if (currentNode.Value == searchValue)
 				{
-					return node;
+					return currentNode;
 				}
-				node = node.NextItem;
+				currentNode = currentNode.NextItem;
 			}
 			return null;
 		}
-
 		public int GetCount()
 		{
 			int Count = 0;
-			var node = FirstNode;
-			while (node != LastNode)
+			var currentNode = FirstNode;
+			while (currentNode != LastNode)
 			{
 				Count++;
-				node = node.NextItem;
+				currentNode = currentNode.NextItem;
 			}
 			return Count;
 		}
 
-
 		public void OutAllList()
 		{
-			var node = FirstNode;
-			while (true)
+			var currentNode = FirstNode;
+			while (currentNode != LastNode)
 			{
-				if (node.NextItem != null) Console.WriteLine($"{node.Value}");
-				else return;
-				node = node.NextItem;
+				Console.WriteLine($"{currentNode.Value}");
+				currentNode = currentNode.NextItem;
 			}
 
 		}
 		public void RemoveNode(int index)
 		{
-			throw new NotImplementedException();
+			if (index < 0 || index > GetCount() - 1)
+			{
+				Console.WriteLine($"Нет элемента с таким индексом");
+			}
+			else
+			if (index == 0)
+			{
+				var currentNode = FirstNode.NextItem;
+				FirstNode = currentNode;
+			}
+			else
+			if (index == GetCount() - 1)
+			{
+				var currentNode = LastNode.PrevItem;
+				LastNode = currentNode;
+			}
+			else
+			if (index != 1 && index != GetCount() - 1)
+			{
+				var currentNode = FirstNode;
+				for (int i = 0; i < index - 1; i++)
+				{
+					currentNode = currentNode.NextItem;
+				}
+				var nextNode = currentNode.NextItem;
+				var prevNode = currentNode.PrevItem;
+
+				nextNode.PrevItem = prevNode;
+				prevNode.NextItem = nextNode;
+			}
 		}
 
 		public void RemoveNode(Node node)
 		{
-			throw new NotImplementedException();
+			int index = 0;
+			var currentNode = FirstNode;
+			while (currentNode != node)
+			{
+				index++;
+				currentNode = currentNode.NextItem;
+			}
+			RemoveNode(index+1);
 		}
 
 	}

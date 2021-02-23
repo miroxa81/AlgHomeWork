@@ -10,7 +10,7 @@ namespace Task1
 			DoubleLinkedList MyList = new DoubleLinkedList();
 			MyList.AddNode(22);
 			Console.WriteLine($"Количество: {MyList.GetCount()}");
-			MyList.OutAllList();/*
+			MyList.OutAllList();
 			MyList.AddNode(24);
 			Console.WriteLine($"Количество: {MyList.GetCount()}");
 			MyList.OutAllList();
@@ -31,24 +31,19 @@ namespace Task1
 			MyList.OutAllList();
 			MyList.AddNode(36);
 			Console.WriteLine($"Количество: {MyList.GetCount()}");
-			MyList.OutAllList();*/
+			MyList.OutAllList();
 
 
-			try
-			{
-				var TestNode = MyList.FindNode(28);
+				var TestNode = MyList.FindNode(32);
 
 				Console.WriteLine($"Тест нода:{TestNode.Value}");
 				MyList.AddNodeAfter(TestNode, 44);
 				Console.WriteLine($"Количество: {MyList.GetCount()}");
 				MyList.OutAllList();
-			}
-			catch (Exception e)
-			{
-				Console.Write($"{e.Message}");
-			}
 
-
+			MyList.RemoveNode(TestNode);
+			Console.WriteLine($"Количество: {MyList.GetCount()}");
+			MyList.OutAllList();
 
 
 		}
