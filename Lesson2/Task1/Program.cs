@@ -10,8 +10,9 @@ namespace Task1
 			Random rnd = new Random();
 
 			DoubleLinkedList MyList = new DoubleLinkedList();
-			Node TestNode = new Node();
-			MyList.AddNode(TestNode.Value = 22);
+			Node TestNode = new Node { Value = 22};
+			MyList.AddNode(22);
+			
 			
 
 
@@ -21,7 +22,7 @@ namespace Task1
 
 			//MyList.AddNode(rnd.Next(10));
 
-			MyList.AddNodeAfter(TestNode, 3);
+			MyList.AddNodeAfter(MyList.Equals, 3);
 			int ListCount = MyList.GetCount();
 
 			
