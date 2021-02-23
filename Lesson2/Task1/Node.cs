@@ -10,10 +10,4 @@ namespace Task1
 		public Node NextItem { get; set; }
 		public Node PrevItem { get; set; }
 	}
-
-		
-	
-
-
-
 }

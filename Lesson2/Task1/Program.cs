@@ -7,30 +7,37 @@ namespace Task1
 	{
 		static void Main(string[] args)
 		{
-			Random rnd = new Random();
-
 			DoubleLinkedList MyList = new DoubleLinkedList();
-			Node TestNode = new Node { Value = 22};
 			MyList.AddNode(22);
-			
-			
+			Console.WriteLine($"Количество: {MyList.GetCount()}");
+			MyList.OutAllList();
+			MyList.AddNode(24);
+			Console.WriteLine($"Количество: {MyList.GetCount()}");
+			MyList.OutAllList();
+			MyList.AddNode(26);
+			Console.WriteLine($"Количество: {MyList.GetCount()}");
+			MyList.OutAllList();
+			MyList.AddNode(28);
+			Console.WriteLine($"Количество: {MyList.GetCount()}");
+			MyList.OutAllList();
+			MyList.AddNode(30);
+			Console.WriteLine($"Количество: {MyList.GetCount()}");
+			MyList.OutAllList();
+			MyList.AddNode(32);
+			Console.WriteLine($"Количество: {MyList.GetCount()}");
+			MyList.OutAllList();
+			MyList.AddNode(34);
+			Console.WriteLine($"Количество: {MyList.GetCount()}");
+			MyList.OutAllList();
 
+			var TestNode = MyList.FindNode(28);
 
+			Console.WriteLine($"Количество: {MyList.GetCount()}");
 
+			Console.WriteLine($"Тест нода:{TestNode.Value}");
+			MyList.AddNodeAfter(TestNode, 44);
 
-
-
-			//MyList.AddNode(rnd.Next(10));
-
-			MyList.AddNodeAfter(MyList.Equals, 3);
-			int ListCount = MyList.GetCount();
-
-			
-
-			Console.WriteLine($"кол-во {ListCount}");
-
-			
-
+			MyList.OutAllList();
 
 		}
 	}

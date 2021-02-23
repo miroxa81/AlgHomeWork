@@ -8,10 +8,11 @@ namespace Task1
 	{
 		Node FirstNode = new Node();
 		Node LastNode = new Node();
+
 		public void AddNode(int value)
 		{
 			{
-	
+
 				if (LastNode.PrevItem == null)
 				{
 					FirstNode.Value = value;
@@ -33,7 +34,6 @@ namespace Task1
 			var newNode = new Node { Value = value };
 
 			var nextNode = node.NextItem;
-			
 
 			node.NextItem = newNode;
 			newNode.NextItem = nextNode;
@@ -44,7 +44,10 @@ namespace Task1
 
 		public Node FindNode(int searchValue)
 		{
-			throw new NotImplementedException();
+			var node = FirstNode;
+			while (node.Value != searchValue) node = node.NextItem;
+			return node;
+
 		}
 
 		public int GetCount()
@@ -58,7 +61,16 @@ namespace Task1
 			}
 			return Count;
 		}
+		public void OutAllList()
+		{
+			var node = FirstNode;
+			while (node.NextItem != null)
+			{
+				Console.WriteLine($"{node.Value}");
+				node = node.NextItem;
+			}
 
+		}
 		public void RemoveNode(int index)
 		{
 			throw new NotImplementedException();
