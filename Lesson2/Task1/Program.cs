@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Task1
 {
@@ -6,7 +7,30 @@ namespace Task1
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+			Random rnd = new Random();
+
+			DoubleLinkedList MyList = new DoubleLinkedList();
+			Node TestNode = new Node();
+			MyList.AddNode(TestNode.Value = 22);
+			
+
+
+
+
+
+
+			//MyList.AddNode(rnd.Next(10));
+
+			MyList.AddNodeAfter(TestNode, 3);
+			int ListCount = MyList.GetCount();
+
+			
+
+			Console.WriteLine($"кол-во {ListCount}");
+
+			
+
+
 		}
 	}
 }
