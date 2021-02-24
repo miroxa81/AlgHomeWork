@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Task1
 {
-	class DoubleLinkedList : ILinkedList
+	public class DoubleLinkedList : ILinkedList
 	{
-		private Node FirstNode { get; set; }
-		private Node LastNode { get; set; }
+		public Node FirstNode { get; set; }
+		public Node LastNode { get; set; }
 
 
 		public void AddNode(int value)
@@ -40,22 +40,28 @@ namespace Task1
 		public void AddNodeAfter(Node currentNode, int value)
 		{
 			var newNode = new Node { Value = value };
-			var nextNode = currentNode.NextItem;
 
-			currentNode.NextItem = newNode;
-			newNode.NextItem = nextNode;
-			nextNode.PrevItem = currentNode;
-
-			if (nextNode.NextItem == null)
+			if (currentNode == LastNode)
 			{
-				LastNode = nextNode; 
+				LastNode.NextItem = newNode;
+				newNode.PrevItem = LastNode;
+				LastNode = newNode;
 			}
+			else
+			{
+				var nextNode = currentNode.NextItem;
+				currentNode.NextItem = newNode;
+				newNode.NextItem = nextNode;
+				newNode.PrevItem = currentNode;
+			}
+
 		}
 
 		public Node FindNode(int searchValue)
 		{
+
 			var currentNode = FirstNode;
-			while (currentNode != LastNode)
+			while (currentNode != null)
 			{
 				if (currentNode.Value == searchValue)
 				{
@@ -65,11 +71,36 @@ namespace Task1
 			}
 			return null;
 		}
+		public Node FindNodeByIndex(int index)
+		{
+			if (index < 0) { return null; }
+
+			var currentIndex = 0;
+			var currentNode = FirstNode;
+
+			while (currentIndex < index)
+			{
+				currentNode = currentNode.NextItem;
+				currentIndex++;
+				if (currentNode.NextItem == null)
+					if (currentIndex < index)
+					{
+						return null;
+					}
+					else
+					{
+						return LastNode;
+					}
+
+			}
+
+			return currentNode;
+		}
 		public int GetCount()
 		{
 			int Count = 0;
 			var currentNode = FirstNode;
-			while (currentNode != LastNode)
+			while (currentNode != null)
 			{
 				Count++;
 				currentNode = currentNode.NextItem;
@@ -80,12 +111,11 @@ namespace Task1
 		public void OutAllList()
 		{
 			var currentNode = FirstNode;
-			while (currentNode != LastNode)
+			while (currentNode != null)
 			{
 				Console.WriteLine($"{currentNode.Value}");
 				currentNode = currentNode.NextItem;
 			}
-
 		}
 		public void RemoveNode(int index)
 		{
@@ -98,18 +128,20 @@ namespace Task1
 			{
 				var currentNode = FirstNode.NextItem;
 				FirstNode = currentNode;
+				FirstNode.PrevItem = null;
 			}
 			else
 			if (index == GetCount() - 1)
 			{
 				var currentNode = LastNode.PrevItem;
 				LastNode = currentNode;
+				LastNode.NextItem = null;
 			}
 			else
-			if (index != 1 && index != GetCount() - 1)
+			if (index != 0 && index != GetCount() - 1)
 			{
 				var currentNode = FirstNode;
-				for (int i = 0; i < index - 1; i++)
+				for (int i = 0; i < index; i++)
 				{
 					currentNode = currentNode.NextItem;
 				}
@@ -123,14 +155,15 @@ namespace Task1
 
 		public void RemoveNode(Node node)
 		{
-			int index = 0;
+			var index = 0;
 			var currentNode = FirstNode;
 			while (currentNode != node)
 			{
-				index++;
 				currentNode = currentNode.NextItem;
+				index++;
 			}
-			RemoveNode(index+1);
+
+			RemoveNode(index);
 		}
 
 	}

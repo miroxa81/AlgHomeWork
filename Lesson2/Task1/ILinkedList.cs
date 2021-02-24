@@ -11,7 +11,8 @@ namespace Task1
 		void AddNodeAfter(Node node, int value); // добавляет новый элемент списка после определённого элемента
 		void RemoveNode(int index); // удаляет элемент по порядковому номеру
 		void RemoveNode(Node node); // удаляет указанный элемент
-		Node FindNode(int searchValue); // ищет элемент по его значению   }
-		void OutAllList();
+		Node FindNode(int searchValue); // ищет элемент по его значению   
+		Node FindNodeByIndex(int index); // ищет элемент по индексу
+		//void OutAllList();
 	}
 }
