@@ -6,12 +6,21 @@ namespace Task1Test
 	[TestClass]
 	public class LinkedListTest
 	{
-
+		DoubleLinkedList MyTestList = new DoubleLinkedList();
+		int[] testArray = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
+		public DoubleLinkedList FillList(int[] testArr)
+		{
+			var MyTL = new DoubleLinkedList();
+			for (int i = 0; i < testArr.Length; i++)
+			{
+				MyTL.AddNode(testArr[i]);
+			}
+			return MyTL;
+		}
 		[TestMethod]
 		public void AddNode_One_EmptyList_Test()
 		{
 			//Arrange
-			DoubleLinkedList MyTestList = new DoubleLinkedList();
 			int FirstNodeValue = 22;
 			//Act
 			MyTestList.AddNode(22);
@@ -26,7 +35,6 @@ namespace Task1Test
 			//Arrange
 			int FirstNodeValue = 22;
 			int SecondNodeValue = 24;
-			DoubleLinkedList MyTestList = new DoubleLinkedList();
 			//Act
 			MyTestList.AddNode(22);
 			MyTestList.AddNode(24);
@@ -45,7 +53,6 @@ namespace Task1Test
 			int FirstNodeValue = 22;
 			int SecondNodeValue = 24;
 			int ThirdNodeValue = 26;
-			DoubleLinkedList MyTestList = new DoubleLinkedList();
 			//Act
 			MyTestList.AddNode(22);
 			MyTestList.AddNode(24);
@@ -58,18 +65,11 @@ namespace Task1Test
 			Assert.AreEqual(ThirdNodeValue, MyTestList.LastNode.Value);
 			Assert.AreEqual(null, MyTestList.LastNode.NextItem);
 		}
-
-
 		[TestMethod]
 		public void FindNodeByIndex_Test()
 		{
 			//Arrange
-			int[] TestArray = { 22, 24, 26, 28, 30, 32, 34, 36 };
-			DoubleLinkedList MyTestList = new DoubleLinkedList();
-			for (int i = 0; i < TestArray.Length; i++)
-			{
-				MyTestList.AddNode(TestArray[i]);
-			}
+			MyTestList = FillList(testArray); // Test Array  = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
 			int ExpectedValue = 32;
 			int testIndex = 5;
 			//Act
@@ -82,12 +82,7 @@ namespace Task1Test
 		public void FindNodeByIndex_Last_Test()
 		{
 			//Arrange
-			int[] TestArray = { 22, 24, 26, 28, 30, 32, 34, 36 };
-			DoubleLinkedList MyTestList = new DoubleLinkedList();
-			for (int i = 0; i < TestArray.Length; i++)
-			{
-				MyTestList.AddNode(TestArray[i]);
-			}
+			MyTestList = FillList(testArray); //Test Array = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
 			int ExpectedValue = 36;
 			int testIndex = 7;
 			//Act
@@ -95,17 +90,11 @@ namespace Task1Test
 			//Assert
 			Assert.AreEqual(ExpectedValue, ActualNode.Value);
 		}
-
 		[TestMethod]
 		public void FindNodeByIndex_OutOfRangeIndex_Test()
 		{
 			//Arrange
-			int[] TestArray = { 22, 24, 26, 28, 30, 32, 34, 36 };
-			DoubleLinkedList MyTestList = new DoubleLinkedList();
-			for (int i = 0; i < TestArray.Length; i++)
-			{
-				MyTestList.AddNode(TestArray[i]);
-			}
+			MyTestList = FillList(testArray); //Test Array = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
 			Node ExpectedNode = null;
 			int testIndex = 15;
 			//Act
@@ -114,17 +103,11 @@ namespace Task1Test
 			//Assert
 			Assert.AreEqual(ExpectedNode, ActualNode);
 		}
-
 		[TestMethod]
 		public void FindNodebyValueTest()
 		{
 			//Arrange
-			int[] TestArray = { 22, 24, 26, 28, 30, 32, 34, 36 };
-			DoubleLinkedList MyTestList = new DoubleLinkedList();
-			for (int i = 0; i < TestArray.Length; i++)
-			{
-				MyTestList.AddNode(TestArray[i]);
-			}
+			MyTestList = FillList(testArray);// Test Array = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
 			int testValue = 24;
 			int testIndex = 1;
 			Node ExpectedNode = MyTestList.FindNodeByIndex(testIndex);
@@ -137,13 +120,7 @@ namespace Task1Test
 		public void FindNodebyValue_notFound_Test()
 		{
 			//Arrange
-			int[] TestArray = { 22, 24, 26, 28, 30, 32, 34, 36 };
-			DoubleLinkedList MyTestList = new DoubleLinkedList();
-			for (int i = 0; i < TestArray.Length; i++)
-			{
-				MyTestList.AddNode(TestArray[i]);
-			}
-
+			MyTestList = FillList(testArray); //Test Array = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
 			int testValue = 18;
 			Node ExpectedNode = null;
 			//Act
@@ -151,24 +128,16 @@ namespace Task1Test
 			//Assert
 			Assert.AreEqual(ExpectedNode, ActualNode);
 		}
-
 		[TestMethod]
 		public void AddNode44After_28_Test()
 		{
 			//Arrange
-			int[] TestArray = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
+			MyTestList = FillList(testArray); //Test Array = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
 			int[] ExpectedArray = new int[9] { 22, 24, 26, 28, 44, 30, 32, 34, 36 };
-			DoubleLinkedList MyTestList = new DoubleLinkedList();
-			for (int i = 0; i < TestArray.Length; i++)
-			{
-				MyTestList.AddNode(TestArray[i]);
-			}
-
 			int testIndex = 3;
 			var testNode = MyTestList.FindNodeByIndex(testIndex);
 			//Act
 			MyTestList.AddNodeAfter(testNode, 44);
-
 			//Assert
 			int index = 0;
 			while (MyTestList.FindNodeByIndex(index) != null)
@@ -178,18 +147,12 @@ namespace Task1Test
 				index++;
 			}
 		}
-
 		[TestMethod]
 		public void AddNode44After_Last_Test()
 		{
 			//Arrange
-			int[] TestArray = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
+			MyTestList = FillList(testArray); //Test Array = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
 			int[] ExpectedArray = new int[9] { 22, 24, 26, 28, 30, 32, 34, 36, 44 };
-			DoubleLinkedList MyTestList = new DoubleLinkedList();
-			for (int i = 0; i < TestArray.Length; i++)
-			{
-				MyTestList.AddNode(TestArray[i]);
-			}
 			int testIndex = 7;
 			var testNode = MyTestList.FindNodeByIndex(testIndex);
 			//Act
@@ -203,6 +166,108 @@ namespace Task1Test
 				Assert.AreEqual(ExpectedArray[index], Result);
 				index++;
 			}
+		}
+		[TestMethod]
+		public void RemoveNodeByIndex_FirstIndex_Test()
+		{
+			//Arrange
+			MyTestList = FillList(testArray);//Test Array = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
+			int[] ExpectedArray = new int[7] { 24, 26, 28, 30, 32, 34, 36 };
+			int testIndex = 0;
+			//Act
+			MyTestList.RemoveNode(testIndex);
+			//Assert
+			int index = 0;
+			while (MyTestList.FindNodeByIndex(index) != null)
+			{
+				var Result = MyTestList.FindNodeByIndex(index).Value;
+				Assert.AreEqual(ExpectedArray[index], Result);
+				index++;
+			}
+		}
+		[TestMethod]
+		public void RemoveNodeByIndex_LastIndex_Test()
+		{
+			//Arrange
+			MyTestList = FillList(testArray);//Test Array = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
+			int[] ExpectedArray = new int[7] { 22, 24, 26, 28, 30, 32, 34 };
+			int testIndex = 7;
+			//Act
+			MyTestList.RemoveNode(testIndex);
+			//Assert
+			int index = 0;
+			while (MyTestList.FindNodeByIndex(index) != null)
+			{
+				var Result = MyTestList.FindNodeByIndex(index).Value;
+				Assert.AreEqual(ExpectedArray[index], Result);
+				index++;
+			}
+		}
+		[TestMethod]
+		public void RemoveNodeByIndex_5_Test()
+		{
+			//Arrange
+			MyTestList = FillList(testArray);//Test Array = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
+			int[] ExpectedArray = new int[7] { 22, 24, 26, 28, 30, 34, 36 };
+			int testIndex = 5;
+			//Act
+			MyTestList.RemoveNode(testIndex);
+			//Assert
+			int index = 0;
+			while (MyTestList.FindNodeByIndex(index) != null)
+			{
+				var Result = MyTestList.FindNodeByIndex(index).Value;
+				Assert.AreEqual(ExpectedArray[index], Result);
+				index++;
+			}
+		}
+		[TestMethod]
+		public void RemoveNodeByIndex_OutOfRange_Test()
+		{
+			//Arrange
+			MyTestList = FillList(testArray);//Test Array = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
+			int[] ExpectedArray = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
+			int testIndex = -2;
+			//Act
+			MyTestList.RemoveNode(testIndex);
+			//Assert
+			int index = 0;
+			while (MyTestList.FindNodeByIndex(index) != null)
+			{
+				var Result = MyTestList.FindNodeByIndex(index).Value;
+				Assert.AreEqual(ExpectedArray[index], Result);
+				index++;
+			}
+		}
+		[TestMethod]
+		public void RemoveNode()
+		{
+			//Arrange
+			MyTestList = FillList(testArray);//Test Array = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
+			int[] ExpectedArray = new int[7] { 22, 24, 26, 28, 30, 34, 36 };
+			int testIndex = 5;
+			var testNode = MyTestList.FindNodeByIndex(testIndex);
+			//Act
+			MyTestList.RemoveNode(testNode);
+			//Assert
+			int index = 0;
+			while (MyTestList.FindNodeByIndex(index) != null)
+			{
+				var Result = MyTestList.FindNodeByIndex(index).Value;
+				Assert.AreEqual(ExpectedArray[index], Result);
+				index++;
+			}
+		}
+		[TestMethod]
+		public void GetCountTest()
+		{
+			//Arrange
+			MyTestList = FillList(testArray);//Test Array = new int[8] { 22, 24, 26, 28, 30, 32, 34, 36 };
+			int Expected = 8;
+			//Act
+			int Result = MyTestList.GetCount();
+			//Assert
+			Assert.AreEqual(Expected, Result);
 		}
 	}
 }

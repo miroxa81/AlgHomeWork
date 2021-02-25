@@ -121,7 +121,7 @@ namespace Task1
 		{
 			if (index < 0 || index > GetCount() - 1)
 			{
-				Console.WriteLine($"Нет элемента с таким индексом");
+				return;
 			}
 			else
 			if (index == 0)

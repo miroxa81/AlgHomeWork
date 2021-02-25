@@ -13,6 +13,5 @@ namespace Task1
 		void RemoveNode(Node node); // удаляет указанный элемент
 		Node FindNode(int searchValue); // ищет элемент по его значению   
 		Node FindNodeByIndex(int index); // ищет элемент по индексу
-		//void OutAllList();
 	}
 }
