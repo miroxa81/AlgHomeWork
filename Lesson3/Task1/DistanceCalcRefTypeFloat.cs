@@ -14,25 +14,17 @@ namespace Task1
 			float y = pointOne.Y - pointTwo.Y;
 			return (x * x) + (y * y);
 		}
-		[Benchmark]
-		public void BenchTestDistanceCalcRefTypeFloat_10_10_100_100()
+
+		[Benchmark(Description = "Обычный метод. Тип-Reference. Значения-float")]
+		[Arguments(10, 10, 100, 100)]
+		[Arguments(10, 10, 200, 200)]
+		[Arguments(10, 10, 300, 300)]
+		[Arguments(10, 10, 400, 400)]
+		[Arguments(10, 10, 500, 500)]
+		public void BenchTestDistanceCalcRefTypeFloat(int x1, int y1, int x2, int y2)
 		{
-			PointClass startPoint = new PointClass { X = 10, Y = 100 };
-			PointClass endPoint = new PointClass { X = 10, Y = 100 };
-			Calculate(startPoint, endPoint);
-		}
-		[Benchmark]
-		public void BenchTestDistanceCalcRefTypeFloat_10_10_500_500()
-		{
-			PointClass startPoint = new PointClass { X = 10, Y = 500 };
-			PointClass endPoint = new PointClass { X = 10, Y = 500 };
-			Calculate(startPoint, endPoint);
-		}
-		[Benchmark]
-		public void BenchTestDistanceCalcRefTypeFloat_10_10_1000_1000()
-		{
-			PointClass startPoint = new PointClass { X = 10, Y = 1000 };
-			PointClass endPoint = new PointClass { X = 10, Y = 1000 };
+			PointClass startPoint = new PointClass { X = x1, Y = y1 };
+			PointClass endPoint = new PointClass { X = x2, Y = y2 };
 			Calculate(startPoint, endPoint);
 		}
 	}
