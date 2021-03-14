@@ -5,7 +5,7 @@ using BenchmarkDotNet.Running;
 
 /*
 _______________________________________________________________________________
-| Method			| TestTarget  | Mean          | Error       | StdDev      |
+| Method            | TestTarget  | Mean          | Error       | StdDev      |
 | ------------------| ----------- | -------------:| -----------:| -----------:|
 | 'Поиск в HashSet' | 3_j(Z       | 13.53 ns      | 0.292 ns    | 0.390 ns    |
 | 'Поиск в HashSet' | Wv]? l      | 11.33 ns      | 0.116 ns    | 0.103 ns    |
