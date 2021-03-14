@@ -44,7 +44,8 @@ namespace Task1
 
 			for (int j = 0; j < 18; j++)
 			{
-				Console.WriteLine(str);
+				Console.SetCursorPosition(0, j);
+				Console.Write(str);
 			}
 			Console.SetCursorPosition(14, 17);
 		}
