@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Task1
 {
@@ -6,7 +7,15 @@ namespace Task1
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+			const int n= 91; // кол-во вершин графа
+			Node Graph = new Node();
+
+
+
+			for (int i = 0; i <n; i++)
+			{
+				Graph.Value
+			}
 		}
 	}
 }
