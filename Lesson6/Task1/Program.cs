@@ -7,14 +7,17 @@ namespace Task1
 	{
 		static void Main(string[] args)
 		{
-			const int n= 91; // кол-во вершин графа
-			Node Graph = new Node();
+			const int n= 20; // кол-во вершин графа
+			List<Node> Graph = new List<Node>();
 
 
 
 			for (int i = 0; i <n; i++)
 			{
-				Graph.Value
+				Node newNode = new Node();
+				
+				newNode.Name = new RandomString().Next(5);
+				newNode.Edges.
 			}
 		}
 	}

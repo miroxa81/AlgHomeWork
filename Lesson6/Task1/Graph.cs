@@ -6,7 +6,7 @@ namespace Task1
 {
 		public class Node //Вершина
 		{
-			public int Value { get; set; }
+			public string Name { get; set; }
 			public List<Edge> Edges { get; set; } //исходящие связи
 		}
 		public class Edge //Ребро
