@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace Task1
 {
@@ -16,8 +17,53 @@ namespace Task1
 					
 			OutMatrix(matrix);
 			Node[] FilledGraph = FillGraph(matrix);
+			Node root = FilledGraph[0]; //new Random().Next(FilledGraph.Length)
+			List<Node> DFS = WalkDFS(root);
+
+			foreach (var node in DFS)
+			{
+				WriteColor($"{node.Name}, ",ConsoleColor.Green);
+			}
+
 		}
 
+
+		static Node[] FillGraph(int[,] matrix)
+		{
+			Node[] Graph = new Node[matrix.GetLength(0)];
+			for (int i = 0; i < matrix.GetLength(0); i++)
+			{
+				Graph[i] = new Node();
+				Graph[i].Name = Convert.ToString(i + 1);
+				Graph[i].Edges = new List<Edge>();
+			}
+			//
+
+			for (int i = 0; i < matrix.GetLength(0); i++)
+			{
+				for (int j = 0; j < matrix.GetLength(0); j++)
+					if (matrix[i, j] != 0)
+					{
+						Graph[i].Edges.Add(new Edge { Weight = matrix[i, j], Node = Graph[j] });
+					}
+			}
+			return Graph;
+		}
+
+
+		static int[,] RandomMatrix(int n)
+		{
+			int[,] matrix = new int[n, n];
+			for (int i = 0; i < matrix.GetLength(0); i++)
+				for (int j = 0; j < i; j++)
+				{
+					if (i != j)
+					{
+						matrix[i, j] = matrix[j, i] = new Random().Next(0, 5);
+					}
+				}
+			return matrix;
+		}
 
 
 		static void OutMatrix(int[,] matrix)
@@ -51,6 +97,52 @@ namespace Task1
 			}
 
 		}
+
+		static List<Node> WalkDFS(Node root)//Lesson 5 
+		{
+			List<Node> DFSlist = new List<Node>();
+			var GraphStack = new Stack<Node>();
+
+			GraphStack.Push(root);
+
+			while (GraphStack.Count > 0)
+			{
+				var element = GraphStack.Peek();
+
+				if (element.status == Status.white)
+				{
+					element.status = Status.gray;
+
+
+					foreach (var currentEdge in element.Edges )
+
+						
+					{
+						if (currentEdge.Node.status == Status.white)
+						{
+							GraphStack.Push(currentEdge.Node);
+						}
+					}
+				}
+				if (element.status == Status.gray)
+				{
+					element.status = Status.black;
+					DFSlist.Add(GraphStack.Pop());
+				}
+				if (element.status == Status.black)
+				{
+	
+					DFSlist.Add(GraphStack.Pop());
+				}
+				
+
+			}
+			DFSlist.Reverse();
+			return DFSlist;
+		}
+
+
+
 
 
 		/*public List<int> WalkDFS()//Lesson 5 

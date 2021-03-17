@@ -4,9 +4,11 @@ using System.Text;
 
 namespace Task1
 {
+	public enum Status {white,gray,black}
 	public class Node //Вершина
 	{
 		public string Name { get; set; }
+		public Status status = Status.white;
 		public List<Edge> Edges { get; set; } //исходящие связи
 	}
 	public class Edge //Ребро
