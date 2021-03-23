@@ -32,38 +32,36 @@ namespace Task1
 		{
 			int quantityBucket = sortableArray.Length * size / 100;
 			int averageBucketSize = sortableArray.Length / quantityBucket;
-			int[] resultArray = new int[sortableArray.Length];
-			Queue<int>[] bucketsArray = new Queue<int>[quantityBucket];
+			//int[] resultArray = new int[sortableArray.Length];
+			List<int> resultArray = new List<int>();
+
+			List<int>[] bucketsArray = new List<int>[quantityBucket];
 
 			for (int i = 0; i < quantityBucket; i++)
 			{
-				bucketsArray[i] = new Queue<int>();
+				bucketsArray[i] = new List<int>();
 			}
 
 			for (int i = 0; i < sortableArray.Length; i++)
 			{
-				int currentBucket = sortableArray[i] % averageBucketSize;
-
-				if (bucketsArray[currentBucket].Count == 0)
-				{
-					bucketsArray[currentBucket].Enqueue(sortableArray[i]);
-				}
-				else
-				{
-					while (sortableArray[i] > bucketsArray[currentBucket].Peek())
-					{
-						bucketsArray[currentBucket].Enqueue(bucketsArray[currentBucket].Dequeue());
-					}
-				}
+				int currentBucket = sortableArray[i] % quantityBucket;
+				bucketsArray[currentBucket].Add(sortableArray[i]);
 			}
+
+			for (int currentBucket = 0; currentBucket < quantityBucket; currentBucket++)
+			{
+				bucketsArray[currentBucket].Sort();
+			}
+
+			int j = 0;
 			for (int currentBucket = 0; currentBucket < quantityBucket; currentBucket++)
 
-				for (int i = 0; i < bucketsArray[currentBucket].Count; i++)
+				foreach (var i in bucketsArray[currentBucket])
 				{
-					resultArray[i] = bucketsArray[currentBucket].Dequeue();
+					resultArray.Add(i);
 				}
 
-			return resultArray;
+			return resultArray.ToArray(); ;
 		}
 
 
