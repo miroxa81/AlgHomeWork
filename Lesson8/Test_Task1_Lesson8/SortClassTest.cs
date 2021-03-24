@@ -12,14 +12,14 @@ namespace Test_Task1_Lesson8
 		int[] testArray1_equal_1 = new int[2] { 2, 2};
 
 		int[] testArray2 = new int[2] {42, -5 };
-		int[] testArray14 = new int[14] { 11, 2, 33, 24, 15, 77, 98, 39, 74, 12, 32, 0, 5, 42 };
+		int[] testArray14 = new int[14] { -11, 2, 33, 24, 15, 77, 98, 39, 74, 12, -32, 0, 5, 42 };
 		int[] testArray0 = new int[0] {};
 
 		[TestMethod]
 		public void TestBucketSort14()
 		{
 			//Arrange						
-			int[] ExpectedArray = new int[14] { 0, 2, 5, 11, 12, 15, 24, 32, 33, 39, 42, 74, 77, 98 };
+			int[] ExpectedArray = new int[14] { -32, -11, 0, 2, 5, 12, 15, 24, 33, 39, 42, 74, 77, 98 };
 			//Act
 			var ResultArray = Sort.Bucket(testArray14, sizeBucket);
 			//Assert
@@ -40,7 +40,7 @@ namespace Test_Task1_Lesson8
 		public void TestBucketSort2()
 		{
 			//Arrange						
-			int[] ExpectedArray = new int[2] { 42, -5 };
+			int[] ExpectedArray = new int[2] {-5, 42 };
 			//Act
 			var ResultArray = Sort.Bucket(testArray2, sizeBucket);
 			//Assert

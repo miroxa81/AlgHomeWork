@@ -8,12 +8,13 @@ namespace Task1
 	{
 		public static int[] Bucket(int[] sortableArray, int size)
 		{
+			List<int> result = new List<int>();
+			if (sortableArray.Length == 0) { return result.ToArray() ; }
 			int maxSortableArray = sortableArray[0];
 			int minSortableArray = sortableArray[0];
-			List<int> result = new List<int>();
+
 			int quantityBucket = 100 / size;
 
-			if (sortableArray.Length == 0) { return result.ToArray() ; }
 			if (100 % size  != 0) { quantityBucket++; }
 
 			
@@ -30,7 +31,7 @@ namespace Task1
 				if (sortableArray[i] < minSortableArray) minSortableArray = sortableArray[i];
 			}
 
-			int bucketEdge = (maxSortableArray + minSortableArray) / quantityBucket + 1;
+			int bucketEdge = (Math.Abs(maxSortableArray) + Math.Abs(minSortableArray)) / quantityBucket + 1;
 
 			for (int i = 0; i < sortableArray.Length; i++)
 			{
