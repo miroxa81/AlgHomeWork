@@ -8,11 +8,15 @@ namespace Task1
 	{
 		public static int[] Bucket(int[] sortableArray, int size)
 		{
-			int quantityBucket = 100/size;
-			if (100 % size  != 0) { quantityBucket++; }
 			int maxSortableArray = sortableArray[0];
 			int minSortableArray = sortableArray[0];
 			List<int> result = new List<int>();
+			int quantityBucket = 100 / size;
+
+			if (sortableArray.Length == 0) { return result.ToArray() ; }
+			if (100 % size  != 0) { quantityBucket++; }
+
+			
 			List<int>[] bucketsArray = new List<int>[quantityBucket];
 
 			for (int i = 0; i < quantityBucket; i++)
